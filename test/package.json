@@ -13,7 +13,7 @@
     "build": "webpack --node-env production --progress",
     "dev": "webpack --node-env development --progress",
     "watch": "webpack --node-env development --progress --watch",
-    "serve": "webpack --node-env development serve --progress",
+    "serve": "webpack serve --node-env development --progress",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
     "stylelint": "stylelint css/*.css css/*.scss src/**/*.scss src/**/*.vue",
@@ -38,6 +38,8 @@
     "@nextcloud/browserslist-config": "^2.2.0",
     "@nextcloud/eslint-config": "^8.0.0",
     "@nextcloud/stylelint-config": "^2.1.2",
-    "@nextcloud/webpack-vue-config": "^5.2.1"
+    "@nextcloud/webpack-vue-config": "^5.2.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   }
 }
