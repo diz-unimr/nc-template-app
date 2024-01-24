@@ -1,0 +1,17 @@
+version: '3'
+name: 'nc-dev'
+
+services:
+
+  nextcloud:
+    image: ghcr.io/juliushaertl/nextcloud-dev-php80:latest
+    environment:
+      SERVER_BRANCH: v27.1.5
+    volumes:
+      - ./data/apps-extra:/var/www/html/apps-extra
+      - ./data/shared:/shared
+      - ../test:/var/www/html/apps-extra/test
+    ports:
+      - "8080:80"
+    extra_hosts:
+      - host.docker.internal:host-gateway
