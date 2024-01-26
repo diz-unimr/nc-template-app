@@ -8,9 +8,9 @@ services:
     environment:
       SERVER_BRANCH: v27.1.5
     volumes:
-      - ./data/apps-extra:/var/www/html/apps-extra
       - ./data/shared:/shared
-      - ../test:/var/www/html/apps-extra/test
+      - ./data/apps-extra/hmr_enabler:/var/www/html/apps-extra/hmr_enabler
+      - ../:/var/www/html/apps-extra/templateapp
     ports:
       - "8080:80"
     extra_hosts:

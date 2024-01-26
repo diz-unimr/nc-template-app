@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <!--
+    SPDX-FileCopyrightText: Sebastian Stöcker <sebastian.stoecker@uni-marburg.de>
+    SPDX-License-Identifier: CC0-1.0
+    -->
+    <id>templateapp</id>
+    <name>Template App</name>
+    <summary>Development example app</summary>
+    <description><![CDATA[Development example app]]></description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author mail="sebastian.stoecker@uni-marburg.de" >Sebastian Stöcker</author>
+    <namespace>TemplateApp</namespace>
+    <category>tools</category>
+    <bugs>https://github.com/diz-unimr/nc-app-template</bugs>
+    <dependencies>
+        <nextcloud min-version="27" max-version="27"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>Template App</name>
+            <route>templateapp.page.index</route>
+        </navigation>
+    </navigations>
+</info>
