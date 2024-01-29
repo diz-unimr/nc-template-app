@@ -1,5 +1,5 @@
 <template>
-    <!--
+	<!--
     SPDX-FileCopyrightText: Sebastian Stöcker <sebastian.stoecker@uni-marburg.de>
     SPDX-License-Identifier: AGPL-3.0-or-later
     -->
@@ -22,13 +22,13 @@
 							icon="icon-close"
 							@click="cancelNewNote(note)">
 							{{
-							t('templateapp', 'Cancel note creation') }}
+								t('templateapp', 'Cancel note creation') }}
 						</ActionButton>
 						<ActionButton v-else
 							icon="icon-delete"
 							@click="deleteNote(note)">
 							{{
-							 t('templateapp', 'Delete note') }}
+								t('templateapp', 'Delete note') }}
 						</ActionButton>
 					</template>
 				</AppNavigationItem>
@@ -49,8 +49,10 @@
 			</div>
 			<div v-else id="emptycontent">
 				<div class="icon-file" />
-				<h2>{{
-				 t('templateapp', 'Create a note to get started') }}</h2>
+				<h2>
+					{{
+						t('templateapp', 'Test: Create a note to get started') }}
+				</h2>
 			</div>
 		</AppContent>
 	</div>
@@ -88,7 +90,7 @@ export default {
 	computed: {
 		/**
 		 * Return the currently selected note object
-		 * @returns {Object|null}
+		 * @return {object|null}
 		 */
 		currentNote() {
 			if (this.currentNoteId === null) {
@@ -99,7 +101,7 @@ export default {
 
 		/**
 		 * Returns true if a note is selected and its title is not empty
-		 * @returns {Boolean}
+		 * @return {boolean}
 		 */
 		savePossible() {
 			return this.currentNote && this.currentNote.title !== ''
@@ -122,7 +124,7 @@ export default {
 	methods: {
 		/**
 		 * Create a new note and focus the note content field automatically
-		 * @param {Object} note Note object
+		 * @param {object} note Note object
 		 */
 		openNote(note) {
 			if (this.updating) {
@@ -134,7 +136,7 @@ export default {
 			})
 		},
 		/**
-		 * Action tiggered when clicking the save button
+		 * Action triggered when clicking the save button
 		 * create a new note or save
 		 */
 		saveNote() {
@@ -171,7 +173,7 @@ export default {
 		},
 		/**
 		 * Create a new note by sending the information to the server
-		 * @param {Object} note Note object
+		 * @param {object} note Note object
 		 */
 		async createNote(note) {
 			this.updating = true
@@ -188,7 +190,7 @@ export default {
 		},
 		/**
 		 * Update an existing note on the server
-		 * @param {Object} note Note object
+		 * @param {object} note Note object
 		 */
 		async updateNote(note) {
 			this.updating = true
@@ -198,11 +200,12 @@ export default {
 				console.error(e)
 				showError(t('notestutorial', 'Could not update the note'))
 			}
+
 			this.updating = false
 		},
 		/**
 		 * Delete a note, remove it from the frontend and show a hint
-		 * @param {Object} note Note object
+		 * @param {object} note Note object
 		 */
 		async deleteNote(note) {
 			try {

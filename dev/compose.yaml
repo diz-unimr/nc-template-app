@@ -9,7 +9,7 @@ services:
       SERVER_BRANCH: v27.1.5
     volumes:
       - ./data/shared:/shared
-      - ./data/apps-extra/hmr_enabler:/var/www/html/apps-extra/hmr_enabler
+#      - ./data/apps-extra/hmr_enabler:/var/www/html/apps-extra/hmr_enabler
       - ../:/var/www/html/apps-extra/templateapp
     ports:
       - "8080:80"
