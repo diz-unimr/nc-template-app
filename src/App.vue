@@ -51,7 +51,7 @@
 				<div class="icon-file" />
 				<h2>
 					{{
-						t('templateapp', 'Test: Create a note to get started') }}
+						t('templateapp', 'Create a note to get started') }}
 				</h2>
 			</div>
 		</AppContent>

@@ -1,8 +1,0 @@
-.idea
-*.iml
-/vendor/
-/build/
-node_modules/
-/.php_cs.cache
-.php-cs-fixer.cache
-tests/.phpunit.result.cache
