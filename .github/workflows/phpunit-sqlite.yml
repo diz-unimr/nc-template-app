@@ -28,7 +28,7 @@ jobs:
       - name: Set app env
         run: |
           # Split and keep last
-          echo "${{ vars.APP_ID }}"
+          echo "APP_NAME=${{ vars.APP_ID }}" >> $GITHUB_ENV
 
       - name: Checkout server
         uses: actions/checkout@v3
