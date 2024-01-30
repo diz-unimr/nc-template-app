@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Bernhard Posselt <dev@bernhard-posselt.com>
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # This file is licensed under the Affero General Public License version 3 or
 # later. See the COPYING file.
 app_name=$(notdir $(CURDIR))
