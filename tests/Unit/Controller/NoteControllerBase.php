@@ -6,13 +6,10 @@ declare(strict_types=1);
 
 namespace OCA\TemplateApp\Tests\Unit\Controller;
 
-use OCA\TemplateApp\Controller\NoteController;
-use OCA\TemplateApp\Service\NoteNotFound;
-use OCA\TemplateApp\Service\NoteService;
 use OCA\TemplateApp\Db\Note;
+use OCA\TemplateApp\Service\NoteNotFound;
 
 use OCP\AppFramework\Http;
-use OCP\IRequest;
 use PHPUnit\Framework\TestCase;
 
 class NoteControllerBase extends TestCase {
@@ -22,10 +19,10 @@ class NoteControllerBase extends TestCase {
 
 	public function testUpdate(): void {
 		$note = Note::fromRow([
-        			'id' => 3,
-        			'title' => 'title',
-        			'content' => 'just check if this value is returned correctly'
-        		]);
+			'id' => 3,
+			'title' => 'title',
+			'content' => 'just check if this value is returned correctly'
+		]);
 		$this->service->expects($this->once())
 			->method('update')
 			->with($this->equalTo(3),

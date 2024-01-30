@@ -7,13 +7,9 @@ declare(strict_types=1);
 namespace OCA\TemplateApp\Tests\Unit\Controller;
 
 use OCA\TemplateApp\Controller\NoteController;
-use OCA\TemplateApp\Service\NoteNotFound;
 use OCA\TemplateApp\Service\NoteService;
-use OCA\TemplateApp\Db\Note;
 
-use OCP\AppFramework\Http;
 use OCP\IRequest;
-use PHPUnit\Framework\TestCase;
 
 class NoteControllerTest extends NoteControllerBase {
 	protected NoteController $controller;
