@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 class NoteIntegrationTest extends TestCase {
 	private NoteController $controller;
-	private QBMapper $mapper;
+	private NoteMapper $mapper;
 	private string $userId = 'john';
 
 	public function setUp(): void {
