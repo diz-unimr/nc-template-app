@@ -16,13 +16,22 @@ env:
   PHPUNIT_INTEGRATION_CONFIG: ./tests/phpunit.integration.xml
 
 jobs:
+  load-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set version env
+        uses: cardinalby/export-env-action@v2
+        with:
+          envFile: 'versions.env'
+          filter: 'NEXTCLOUD_SERVER'
+
   phpunit-sqlite:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        php-versions: ['8.0']
-        server-versions: ['v27.1.5']
+        php-versions: ['8.0', '8.3']
+        server-versions: [ ${{ env.NEXTCLOUD_SERVER }}]
 
     steps:
       - name: Set app env
