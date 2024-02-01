@@ -27,7 +27,7 @@ jobs:
     needs: generate-matrix
 
     strategy:
-      matrix: ${{ fromJson(needs.generate-matrix.outputs.versions) }}
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
 
     steps:
       - name: Set app env
