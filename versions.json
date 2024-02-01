@@ -1,4 +1,4 @@
 {
-  "php-versions": ["8.0", "8.3"],
+  "php-versions": ["8.0", "8.2"],
   "server-versions": ["v27.1.5"]
 }
