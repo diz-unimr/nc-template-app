@@ -19,7 +19,7 @@ jobs:
   generate-matrix:
     uses: diz-unimr/.github/.github/workflows/generate-matrix.yml@main
     with:
-      matrix-file: versions.yml
+      matrix-file: versions.json
 
 
   phpunit-sqlite:
