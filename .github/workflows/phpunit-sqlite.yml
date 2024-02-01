@@ -17,15 +17,10 @@ env:
 
 jobs:
   generate-matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      versions: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - name: Checkout to repository
-        uses: actions/checkout@v3
-      - name: Set matrix data
-        id: set-matrix
-        run: echo "matrix=$(jq -c . < ./versions.json)" >> $GITHUB_OUTPUT
+    uses: diz-unimr/.github/workflows/generate-matrix.yml@main
+    with:
+      matrix-file: versions.yml
+
 
   phpunit-sqlite:
     runs-on: ubuntu-latest
