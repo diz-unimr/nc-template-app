@@ -3,6 +3,11 @@
     SPDX-FileCopyrightText: Sebastian Stöcker <sebastian.stoecker@uni-marburg.de>
     SPDX-License-Identifier: AGPL-3.0-or-later
     -->
+    <coverage>
+        <include>
+            <directory suffix=".php">./../lib</directory>
+        </include>
+    </coverage>
     <testsuites>
         <testsuite name="unit">
             <directory>./Unit</directory>

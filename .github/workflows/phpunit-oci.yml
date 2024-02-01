@@ -6,6 +6,7 @@ on:
   pull_request:
   push:
     branches:
+      - main
       - master
       - stable*
 
@@ -15,13 +16,23 @@ env:
   PHPUNIT_INTEGRATION_CONFIG: ./tests/phpunit.integration.xml
 
 jobs:
+  generate-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v3
+      - name: Set matrix data
+        id: set-matrix
+        run: echo "matrix=$(jq -c . < ./versions.json)" >> $GITHUB_OUTPUT
+
   phpunit-oci:
     runs-on: ubuntu-20.04
+    needs: generate-matrix
 
     strategy:
-      matrix:
-        php-versions: ['8.0']
-        server-versions: ['master']
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.versions) }}
 
     services:
       oracle:
@@ -33,7 +44,7 @@ jobs:
       - name: Set app env
         run: |
           # Split and keep last
-          echo "APP_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+          echo "APP_NAME=${{ vars.APP_ID }}" >> $GITHUB_ENV
 
       - name: Checkout server
         uses: actions/checkout@v3
