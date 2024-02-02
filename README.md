@@ -4,6 +4,13 @@
 -->
 
 # Nextcloud app development example
+[![ESLint](https://github.com/diz-unimr/nc-template-app/actions/workflows/lint-eslint.yml/badge.svg)](https://github.com/diz-unimr/nc-template-app/actions/workflows/lint-eslint.yml)
+[![Lint app info](https://github.com/diz-unimr/nc-template-app/actions/workflows/lint-info-xml.yml/badge.svg)](https://github.com/diz-unimr/nc-template-app/actions/workflows/lint-info-xml.yml)
+[![PHP Coding Standards Fixer](https://github.com/diz-unimr/nc-template-app/actions/workflows/lint-php-cs.yml/badge.svg)](https://github.com/diz-unimr/nc-template-app/actions/workflows/lint-php-cs.yml)
+[![Stylelint](https://github.com/diz-unimr/nc-template-app/actions/workflows/lint-stylelint.yml/badge.svg)](https://github.com/diz-unimr/nc-template-app/actions/workflows/lint-stylelint.yml)
+[![PHPUnit](https://github.com/diz-unimr/nc-template-app/actions/workflows/phpunit-pgsql.yml/badge.svg)](https://github.com/diz-unimr/nc-template-app/actions/workflows/phpunit-pgsql.yml)
+[![Package build](https://github.com/diz-unimr/nc-template-app/actions/workflows/appbuild.yml/badge.svg)](https://github.com/diz-unimr/nc-template-app/actions/workflows/appbuild.yml)
+[![REUSE Compliance Check](https://github.com/diz-unimr/nc-template-app/actions/workflows/reuse.yml/badge.svg)](https://github.com/diz-unimr/nc-template-app/actions/workflows/reuse.yml)
 
 This is an example nextcloud app development setup.
 
