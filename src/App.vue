@@ -4,37 +4,37 @@
     SPDX-License-Identifier: AGPL-3.0-or-later
     -->
 	<div id="content" class="app-templateapp">
-		<AppNavigation>
-			<AppNavigationNew v-if="!loading"
+		<NcAppNavigation>
+			<NcAppNavigationNew v-if="!loading"
 				:text="t('templateapp', 'New note')"
 				:disabled="false"
 				button-id="new-templateapp-button"
 				button-class="icon-add"
 				@click="newNote" />
 			<ul>
-				<AppNavigationItem v-for="note in notes"
+				<NcAppNavigationItem v-for="note in notes"
 					:key="note.id"
 					:title="note.title ? note.title : t('templateapp', 'New note')"
 					:class="{active: currentNoteId === note.id}"
 					@click="openNote(note)">
 					<template slot="actions">
-						<ActionButton v-if="note.id === -1"
+						<NcActionButton v-if="note.id === -1"
 							icon="icon-close"
 							@click="cancelNewNote(note)">
 							{{
 								t('templateapp', 'Cancel note creation') }}
-						</ActionButton>
-						<ActionButton v-else
+						</NcActionButton>
+						<NcActionButton v-else
 							icon="icon-delete"
 							@click="deleteNote(note)">
 							{{
 								t('templateapp', 'Delete note') }}
-						</ActionButton>
+						</NcActionButton>
 					</template>
-				</AppNavigationItem>
+				</NcAppNavigationItem>
 			</ul>
-		</AppNavigation>
-		<AppContent>
+		</NcAppNavigation>
+		<NcAppContent>
 			<div v-if="currentNote">
 				<input ref="title"
 					v-model="currentNote.title"
@@ -54,16 +54,12 @@
 						t('templateapp', 'Create a note to get started') }}
 				</h2>
 			</div>
-		</AppContent>
+		</NcAppContent>
 	</div>
 </template>
 
 <script>
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import AppContent from '@nextcloud/vue/dist/Components/AppContent'
-import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
-import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
+import { NcAppNavigation, NcAppNavigationItem, NcAppNavigationNew, NcAppContent, NcActionButton, NextcloudVuePlugin } from '@nextcloud/vue'
 
 import '@nextcloud/dialogs/styles/toast.scss'
 import { generateUrl } from '@nextcloud/router'
@@ -73,11 +69,11 @@ import axios from '@nextcloud/axios'
 export default {
 	name: 'App',
 	components: {
-		ActionButton,
-		AppContent,
-		AppNavigation,
-		AppNavigationItem,
-		AppNavigationNew,
+		NcActionButton,
+		NcAppContent,
+		NcAppNavigation,
+		NcAppNavigationItem,
+		NcAppNavigationNew,
 	},
 	data() {
 		return {
