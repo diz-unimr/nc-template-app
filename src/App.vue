@@ -3,7 +3,7 @@
     SPDX-FileCopyrightText: Sebastian Stöcker <sebastian.stoecker@uni-marburg.de>
     SPDX-License-Identifier: AGPL-3.0-or-later
     -->
-	<div id="content" class="app-templateapp">
+	<NcContent app-name="templateapp">
 		<NcAppNavigation>
 			<NcAppNavigationNew v-if="!loading"
 				:text="t('templateapp', 'New note')"
@@ -13,7 +13,8 @@
 				@click="newNote" />
 			<ul>
 				<NcAppNavigationItem v-for="note in notes"
-					:key="note.id"
+					:key="note.title"
+					:name="note.title ? note.title : t('templateapp', 'New note')"
 					:title="note.title ? note.title : t('templateapp', 'New note')"
 					:class="{active: currentNoteId === note.id}"
 					@click="openNote(note)">
@@ -55,11 +56,11 @@
 				</h2>
 			</div>
 		</NcAppContent>
-	</div>
+	</NcContent>
 </template>
 
 <script>
-import { NcAppNavigation, NcAppNavigationItem, NcAppNavigationNew, NcAppContent, NcActionButton, NextcloudVuePlugin } from '@nextcloud/vue'
+import { NcContent, NcAppNavigation, NcAppNavigationItem, NcAppNavigationNew, NcAppContent, NcActionButton } from '@nextcloud/vue'
 
 import '@nextcloud/dialogs/styles/toast.scss'
 import { generateUrl } from '@nextcloud/router'
@@ -69,6 +70,7 @@ import axios from '@nextcloud/axios'
 export default {
 	name: 'App',
 	components: {
+		NcContent,
 		NcActionButton,
 		NcAppContent,
 		NcAppNavigation,
