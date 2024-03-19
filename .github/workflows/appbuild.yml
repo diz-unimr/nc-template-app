@@ -99,4 +99,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: App tarball
-          path: build/artifacts/templateapp.tar.gz
+          path: ${{ env.APP_NAME }}/build/artifacts/templateapp.tar.gz
