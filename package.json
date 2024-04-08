@@ -13,7 +13,7 @@
     "build": "webpack --node-env production --progress",
     "dev": "webpack --node-env development --progress",
     "watch": "webpack --node-env development --progress --watch",
-    "serve": "webpack serve --node-env development --allowed-hosts all",
+    "serve": "webpack serve --node-env development --progress --allowed-hosts all",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
     "stylelint": "stylelint css/*.css css/*.scss src/**/*.scss src/**/*.vue",
