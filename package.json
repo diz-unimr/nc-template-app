@@ -34,12 +34,16 @@
     "npm": "^7.0.0 || ^8.0.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-typescript": "^7.24.1",
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/browserslist-config": "^2.2.0",
     "@nextcloud/eslint-config": "^8.3.0",
     "@nextcloud/stylelint-config": "^2.1.2",
-    "@nextcloud/webpack-vue-config": "^5.2.1",
+    "@nextcloud/webpack-vue-config": "^5.5.1",
+    "@vue/tsconfig": "^0.5.1",
     "eslint": "^8.56.0",
+    "ts-loader": "^9.5.1",
     "webpack": "^5.65.0",
     "webpack-cli": "^5.0.1"
   }

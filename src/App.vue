@@ -6,7 +6,7 @@
 	<NcContent app-name="templateapp">
 		<NcAppNavigation>
 			<NcAppNavigationNew v-if="!loading"
-				:text="t('templateapp', 'New note')"
+				:text="'New note'"
 				:disabled="false"
 				button-id="new-templateapp-button"
 				button-class="icon-add"
@@ -14,22 +14,22 @@
 			<ul>
 				<NcAppNavigationItem v-for="note in notes"
 					:key="note.title"
-					:name="note.title ? note.title : t('templateapp', 'New note')"
-					:title="note.title ? note.title : t('templateapp', 'New note')"
+					:name="note.title ? note.title : 'New note'"
+					:title="note.title ? note.title : 'New note'"
 					:class="{active: currentNoteId === note.id}"
 					@click="openNote(note)">
 					<template slot="actions">
 						<NcActionButton v-if="note.id === -1"
 							icon="icon-close"
-							@click="cancelNewNote(note)">
+							@click="cancelNewNote">
 							{{
-								t('templateapp', 'Cancel note creation') }}
+								'Cancel note creation' }}
 						</NcActionButton>
 						<NcActionButton v-else
 							icon="icon-delete"
 							@click="deleteNote(note)">
 							{{
-								t('templateapp', 'Delete note') }}
+								'Delete note' }}
 						</NcActionButton>
 					</template>
 				</NcAppNavigationItem>
@@ -44,7 +44,7 @@
 				<textarea ref="content" v-model="currentNote.content" :disabled="updating" />
 				<input type="button"
 					class="primary"
-					:value="t('templateapp', 'Save')"
+					:value="'Save'"
 					:disabled="updating || !savePossible"
 					@click="saveNote">
 			</div>
@@ -52,22 +52,26 @@
 				<div class="icon-file" />
 				<h2>
 					{{
-						t('templateapp', 'Create a note to get started') }}
+						'Create a note to get started' }}
 				</h2>
 			</div>
 		</NcAppContent>
 	</NcContent>
 </template>
 
-<script>
+<script lang="ts">
 import { NcContent, NcAppNavigation, NcAppNavigationItem, NcAppNavigationNew, NcAppContent, NcActionButton } from '@nextcloud/vue'
 
 import '@nextcloud/dialogs/styles/toast.scss'
 import { generateUrl } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
+import Vue from 'vue'
 
-export default {
+
+
+
+export default Vue.extend({
 	name: 'App',
 	components: {
 		NcContent,
@@ -77,9 +81,9 @@ export default {
 		NcAppNavigationItem,
 		NcAppNavigationNew,
 	},
-	data() {
+	data() :App{
 		return {
-			notes: [],
+			notes:  new Array<Note>(),
 			currentNoteId: null,
 			updating: false,
 			loading: true,
@@ -90,19 +94,19 @@ export default {
 		 * Return the currently selected note object
 		 * @return {object|null}
 		 */
-		currentNote() {
+		currentNote():Note|null {
 			if (this.currentNoteId === null) {
 				return null
 			}
-			return this.notes.find((note) => note.id === this.currentNoteId)
+			return this.notes.find((note) => note.id === this.currentNoteId) || null
 		},
 
 		/**
 		 * Returns true if a note is selected and its title is not empty
 		 * @return {boolean}
 		 */
-		savePossible() {
-			return this.currentNote && this.currentNote.title !== ''
+		savePossible():boolean {
+			return this.currentNote != null && this.currentNote.title !== ''
 		},
 	},
 	/**
@@ -114,7 +118,7 @@ export default {
 			this.notes = response.data
 		} catch (e) {
 			console.error(e)
-			showError(t('notestutorial', 'Could not fetch notes'))
+			showError('Could not fetch notes')
 		}
 		this.loading = false
 	},
@@ -124,24 +128,24 @@ export default {
 		 * Create a new note and focus the note content field automatically
 		 * @param {object} note Note object
 		 */
-		openNote(note) {
+		openNote(note:Note):void {
 			if (this.updating) {
 				return
 			}
 			this.currentNoteId = note.id
 			this.$nextTick(() => {
-				this.$refs.content.focus()
+				(this.$refs.title as any).focus()
 			})
 		},
 		/**
 		 * Action triggered when clicking the save button
 		 * create a new note or save
 		 */
-		saveNote() {
+		saveNote():void {
 			if (this.currentNoteId === -1) {
-				this.createNote(this.currentNote)
+				this.createNote(this.currentNote as Note)
 			} else {
-				this.updateNote(this.currentNote)
+				this.updateNote(this.currentNote as Note)
 			}
 		},
 		/**
@@ -149,7 +153,7 @@ export default {
 		 * The note is not yet saved, therefore an id of -1 is used until it
 		 * has been persisted in the backend
 		 */
-		newNote() {
+		newNote():void {
 			if (this.currentNoteId !== -1) {
 				this.currentNoteId = -1
 				this.notes.push({
@@ -158,14 +162,14 @@ export default {
 					content: '',
 				})
 				this.$nextTick(() => {
-					this.$refs.title.focus()
+					(this.$refs.title as any).focus()
 				})
 			}
 		},
 		/**
 		 * Abort creating a new note
 		 */
-		cancelNewNote() {
+		cancelNewNote() :void{
 			this.notes.splice(this.notes.findIndex((note) => note.id === -1), 1)
 			this.currentNoteId = null
 		},
@@ -173,30 +177,30 @@ export default {
 		 * Create a new note by sending the information to the server
 		 * @param {object} note Note object
 		 */
-		async createNote(note) {
+		async createNote(note:Note):Promise<void> {
 			this.updating = true
 			try {
 				const response = await axios.post(generateUrl('/apps/templateapp/notes'), note)
-				const index = this.notes.findIndex((match) => match.id === this.currentNoteId)
+				const index:number = this.notes.findIndex((match) => match.id === this.currentNoteId)
 				this.$set(this.notes, index, response.data)
 				this.currentNoteId = response.data.id
 			} catch (e) {
 				console.error(e)
-				showError(t('notestutorial', 'Could not create the note'))
+				showError('Could not create the note')
 			}
 			this.updating = false
 		},
 		/**
 		 * Update an existing note on the server
-		 * @param {object} note Note object
+		 * @param {Note} note Note object
 		 */
-		async updateNote(note) {
+		async updateNote(note:Note):Promise<void> {
 			this.updating = true
 			try {
 				await axios.put(generateUrl(`/apps/templateapp/notes/${note.id}`), note)
 			} catch (e) {
 				console.error(e)
-				showError(t('notestutorial', 'Could not update the note'))
+				showError('Could not update the note')
 			}
 
 			this.updating = false
@@ -205,21 +209,21 @@ export default {
 		 * Delete a note, remove it from the frontend and show a hint
 		 * @param {object} note Note object
 		 */
-		async deleteNote(note) {
+		async deleteNote(note: Note):Promise<void> {
 			try {
 				await axios.delete(generateUrl(`/apps/templateapp/notes/${note.id}`))
 				this.notes.splice(this.notes.indexOf(note), 1)
 				if (this.currentNoteId === note.id) {
 					this.currentNoteId = null
 				}
-				showSuccess(t('templateapp', 'Note deleted'))
+				showSuccess('Note deleted')
 			} catch (e) {
 				console.error(e)
-				showError(t('templateapp', 'Could not delete the note'))
+				showError('Could not delete the note')
 			}
 		},
-	},
-}
+	}})
+
 </script>
 <style scoped>
 	#app-content > div {
