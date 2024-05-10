@@ -2,9 +2,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 module.exports = {
 	extends: [
-		'@nextcloud',
+		'@nextcloud/eslint-config/typescript',
 	],
 	rules: {
-		'n/no-missing-import': 'off',
+		'no-unused-vars': 'off',
+		'@typescript-eslint/no-unused-vars': ['error'],
 	},
 }
