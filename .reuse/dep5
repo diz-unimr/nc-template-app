@@ -3,7 +3,7 @@ Upstream-Name: Template App
 Upstream-Contact: Sebastian Stöcker <sebastian.stoecker@uni-marburg.de>
 Source: https://github.com/nextcloud/profiler
 
-Files: *.json .github/renovate.json .vscode/*.json *.csv *.png
+Files: *.json composer.lock .github/renovate.json .vscode/*.json *.csv *.png
 Copyright: Sebastian Stöcker <sebastian.stoecker@uni-marburg.de>
 License: AGPL-3.0-or-later
 
