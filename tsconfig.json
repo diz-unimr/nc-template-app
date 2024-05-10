@@ -2,13 +2,14 @@
   "extends": "@vue/tsconfig/tsconfig.json",
   "include": ["./src/**/*.ts", "./src/**/*.vue", "./*.d.ts"],
   "compilerOptions": {
-    "types": ["jest", "node", "vue", "vue-router"],
+    "types": ["jest", "node", "vue", "vue-router", "@nextcloud/typings"],
     "target": "ESNext",
     "module": "esnext",
     // Set module resolution to bundler and `noEmit` to be able to set `allowImportingTsExtensions`, so we can import Typescript with .ts extension
-    "moduleResolution": "Bundler",
-    // "allowImportingTsExtensions": true,
-    // "noEmit": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    // "emitDeclarationOnly": true,
+    "noEmit": true,
     // Allow ts to import js files
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -17,10 +18,7 @@
     "resolveJsonModule": true,
     "strict": true,
     "sourceMap": true,
-    "noEmit": false
-    // "paths": {
-    //   "vue$*": ["./node_modules/vue/*"]
-    // }
+    "isolatedModules": true
   },
   "files": ["./vue-shims.d.ts"]
 }

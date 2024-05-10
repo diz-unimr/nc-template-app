@@ -1,9 +1,0 @@
-{
-  "presets": ["@babel/env", "@babel/typescript"],
-  "plugins": [
-    "@babel/transform-typescript",
-    "@babel/proposal-class-properties",
-    "@babel/transform-async-to-generator"
-  ],
-  "comments": false
-}
